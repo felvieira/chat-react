@@ -5,6 +5,8 @@ import './style.css'
 import NewComment from './NewComment'
 import Comments from './Comments'
 
+import base from './base'
+
 class App extends Component {
 
 	constructor(props) {
@@ -12,22 +14,20 @@ class App extends Component {
 
 		this.postNewComment = this.postNewComment.bind(this)
 
+		
 		this.state = {
 			comments: {
-				'1': {
-					// title: 'Primeiro Titulo',
-					comment: 'Primeiro comentário'
-				},
-				'2': {
-					// title: 'Segundo Titulo',
-					comment: 'Segundo comentário'
-				}
+				
 			}
-		}
+		}	
+			this.refComments = base.syncState('comments', {
+				context: this,
+				state: 'comments'
+			})
 	}
-	
+
 	// metodo de postar novo comentario
-	postNewComment(comment){
+	postNewComment(comment) {
 		const comments = { ...this.state.comments }
 		//pegar segundos como id
 		const timestamp = Date.now()
